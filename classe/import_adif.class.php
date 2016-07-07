@@ -32,24 +32,32 @@ class ImportAdif
 
 	
 
-	public function getResult(){
-		echo $this->result;
-	}
+//	public function getResult(){
+//		return $this->result;
+//	}
 
 	public function convert($champ){
 		preg_match('~<'.$champ.':(\d)~', $this->ligne, $nb);
 		preg_match('~<'.$champ.':'.$nb[1].'>(.{'.$nb[1].'})~', $this->ligne, $result);
-		if($champ == 'QSO_DATE'){
-			$y = substr($result[1], 0,4);
-			$m = substr($result[1], 4,2);
-			$j = substr($result[1], 6,2);
-			$this->result = $y."-".$m."-".$j;
-		}else{
-			$this->result = $result[1];
-		}
 		
+		switch ($champ) {
+			case 'QSO_DATE':
+				$this->convertDate($result[1]);
+				break;
+			
+			default:
+				$this->result = $result[1];
+				break;
+		}
+		return $this->result;
 	}
 
+	private function convertDate($qsodate){
+		$y = substr($qsodate, 0,4);
+		$m = substr($qsodate, 4,2);
+		$j = substr($qsodate, 6,2);
+		return $this->result = $y."-".$m."-".$j;
+	}
 
 	public function __set($attribut, $valeur) {
 		echo "Tentative d'attribution à ".$nom." de la valeur ".$valeur;

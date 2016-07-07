@@ -2,11 +2,20 @@
 include("classe/import_adif.class.php");
 
 $test = new ImportAdif();
-
 $test->setFile("import.adi");
 
-$test->convert('QSO_DATE');
-$test->getResult();
+$qsodate = $test->convert('QSO_DATE');
+$indicatif = $test->convert('CALL');
+$timeOn = $test->convert('TIME_ON');
+$timeOff = $test->convert('TIME_OFF');
+
+
+
+
+
+echo $qsodate."<br>";
+echo $indicatif."<br>";
+
 
 
 //	$fichier_a_ouvrir = fopen ("import.adi", "r");
