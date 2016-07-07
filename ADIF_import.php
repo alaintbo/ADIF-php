@@ -1,11 +1,13 @@
 <?php
-include("bin/config.php");
 include("classe/import_adif.class.php");
 
-
-$test = new ImportAdif;
+$test = new ImportAdif();
 
 $test->setFile("import.adi");
+
+$test->convert('QSO_DATE');
+$test->getResult();
+
 
 //	$fichier_a_ouvrir = fopen ("import.adi", "r");
 //	$ligne = fgets($fichier_a_ouvrir);
