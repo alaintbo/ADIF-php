@@ -8,13 +8,16 @@ $qsodate = $test->convert('QSO_DATE');
 $indicatif = $test->convert('CALL');
 $timeOn = $test->convert('TIME_ON');
 $timeOff = $test->convert('TIME_OFF');
-
+$bande = $test->convert('BAND');
 
 
 
 
 echo $qsodate."<br>";
 echo $indicatif."<br>";
+echo $timeOn."<br>";
+echo $timeOff."<br>";
+echo $bande."<br>";
 
 
 

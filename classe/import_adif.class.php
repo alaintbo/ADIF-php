@@ -7,7 +7,7 @@
 
 class ImportAdif
 {
-	private $contenu;
+	//private $contenu;
 	private $ligne;
 	private $file;
 	private $result;
@@ -16,7 +16,7 @@ class ImportAdif
 
 	function __construct(){
 		$this->file = '';
-		$this->contenu = '';
+	//	$this->contenu = '';
 		$this->ligne ='';
 		//$this->champ = $champ;
 	}
@@ -44,7 +44,9 @@ class ImportAdif
 			case 'QSO_DATE':
 				$this->convertDate($result[1]);
 				break;
-			
+			case 'BAND':
+				$this->convertBande($result[1]);
+				break;
 			default:
 				$this->result = $result[1];
 				break;
@@ -57,6 +59,11 @@ class ImportAdif
 		$m = substr($qsodate, 4,2);
 		$j = substr($qsodate, 6,2);
 		return $this->result = $y."-".$m."-".$j;
+	}
+
+	private function convertBande($bande){
+		// A AJOUTER TRAITEMENT.......................
+		return $this->result = $bande;
 	}
 
 	public function __set($attribut, $valeur) {
