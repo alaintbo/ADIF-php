@@ -11,6 +11,7 @@ $test->settingBand('lower');
 $test->settingTime('');
 $test->settingFreq('.');
 $test->settingMode('upper');
+$test->settingGrid('upper');
 
 
 
@@ -25,6 +26,7 @@ $freq = $test->convert('FREQ');
 $rste = $test->convert('RST_SENT');
 $rstr = $test->convert('RST_RCVD');
 $mode = $test->convert('MODE');
+$locator = $test->convert('GRIDSQUARE');
 
 
 
@@ -37,7 +39,7 @@ echo $freq."<br>";
 echo $rste."<br>";
 echo $rstr."<br>";
 echo $mode."<br>";
-
+echo $locator."<br>";
 
 
 

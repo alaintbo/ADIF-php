@@ -17,6 +17,7 @@ class ImportAdif
 	private $paramTime = ':';
 	private $paramFreq = '.';
 	private $paramMode = 'upper';
+	private $paramGrid = 'upper';
 
 	function __construct(){
 		$this->file = '';
@@ -58,7 +59,10 @@ class ImportAdif
 				break;
 			case 'MODE':
 				$this->convertMode($result[1]);
-				break;				
+				break;	
+			case 'GRIDSQUARE':
+				$this->convertGrid($result[1]);
+				break;			
 			default:
 				$this->result = $result[1];
 				break;
@@ -94,6 +98,11 @@ class ImportAdif
 		return $this->result = $mode;
 	}
 
+	private function convertGrid($grid){
+		$this->paramGrid == 'lower' ? $grid = strtolower($grid) : $grid = strtoupper($grid);
+		return $this->result = $grid;
+	}
+
 	public function settingBand($set){
 		$this->paramBande = $set;
 	}
@@ -112,6 +121,10 @@ class ImportAdif
 
 	public function settingMode($set){
 		$this->paramMode = $set;
+	}
+
+	public function settingGrid($set){
+		$this->paramGrid = $set;
 	}
 
 	public function __set($attribut, $valeur) {
