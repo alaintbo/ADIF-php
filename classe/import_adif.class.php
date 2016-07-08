@@ -16,6 +16,7 @@ class ImportAdif
 	private $paramDate = '/';
 	private $paramTime = ':';
 	private $paramFreq = '.';
+	private $paramMode = 'upper';
 
 	function __construct(){
 		$this->file = '';
@@ -54,6 +55,9 @@ class ImportAdif
 				break;
 			case 'FREQ':
 				$this->convertFreq($result[1]);
+				break;
+			case 'MODE':
+				$this->convertMode($result[1]);
 				break;				
 			default:
 				$this->result = $result[1];
@@ -85,9 +89,10 @@ class ImportAdif
 		return $this->result = $freq;
 	}
 
-
-
-
+	private function convertMode($mode){
+		$this->paramMode == 'lower' ? $mode = strtolower($mode) : $mode = strtoupper($mode);
+		return $this->result = $mode;
+	}
 
 	public function settingBand($set){
 		$this->paramBande = $set;
@@ -103,6 +108,10 @@ class ImportAdif
 
 	public function settingFreq($set){
 		$this->paramFreq = $set;
+	}
+
+	public function settingMode($set){
+		$this->paramMode = $set;
 	}
 
 	public function __set($attribut, $valeur) {

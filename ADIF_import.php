@@ -7,12 +7,13 @@ $test->setFile("import.adi");
 
 // Paramètres :
 $test->settingDate('-');
-//$test->settingDate('/');
-//$test->settingBand('upper');
 $test->settingBand('lower');
 $test->settingTime('');
-//$test->settingTime(':');
 $test->settingFreq('.');
+$test->settingMode('upper');
+
+
+
 
 
 $qsodate = $test->convert('QSO_DATE');
@@ -21,6 +22,10 @@ $timeOn = $test->convert('TIME_ON');
 $timeOff = $test->convert('TIME_OFF');
 $bande = $test->convert('BAND');
 $freq = $test->convert('FREQ');
+$rste = $test->convert('RST_SENT');
+$rstr = $test->convert('RST_RCVD');
+$mode = $test->convert('MODE');
+
 
 
 echo $qsodate."<br>";
@@ -29,13 +34,14 @@ echo $timeOn."<br>";
 echo $timeOff."<br>";
 echo $bande."<br>";
 echo $freq."<br>";
+echo $rste."<br>";
+echo $rstr."<br>";
+echo $mode."<br>";
+
+
 
 
 /*
-	$rste = nb('RST_SENT',$ligne);
-
-	$rstr = nb('RST_RCVD',$ligne);
-
 // Faire ajout du mode-ext :
 	$mode = nb('MODE',$ligne);
 
