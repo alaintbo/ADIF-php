@@ -11,14 +11,13 @@ class ImportAdif
 	private $ligne;
 	private $file;
 	private $result;
-	//private $champ;
+	private $paramBande = 'upper';
+	private $paramDate = '/';
 
 
 	function __construct(){
 		$this->file = '';
-	//	$this->contenu = '';
 		$this->ligne ='';
-		//$this->champ = $champ;
 	}
 
 	private function lireFichier(){
@@ -58,12 +57,20 @@ class ImportAdif
 		$y = substr($qsodate, 0,4);
 		$m = substr($qsodate, 4,2);
 		$j = substr($qsodate, 6,2);
-		return $this->result = $y."-".$m."-".$j;
+		return $this->result = $y.$this->paramDate.$m.$this->paramDate.$j;
 	}
 
 	private function convertBande($bande){
-		// A AJOUTER TRAITEMENT.......................
+		$this->paramBande == 'lower' ? $bande = strtolower($bande) : $bande = strtoupper($bande);
 		return $this->result = $bande;
+	}
+
+	public function settingBand($set){
+		$this->paramBande = $set;
+	}
+
+	public function settingDate($set){
+		$this->paramDate = $set;
 	}
 
 	public function __set($attribut, $valeur) {

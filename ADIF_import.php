@@ -2,7 +2,17 @@
 include("classe/import_adif.class.php");
 
 $test = new ImportAdif();
+// Fichier ADIF à lire :
 $test->setFile("import.adi");
+
+// Paramètres :
+$test->settingDate('-');
+//$test->settingDate('/');
+//$test->settingBand('upper');
+$test->settingBand('lower');
+
+
+
 
 $qsodate = $test->convert('QSO_DATE');
 $indicatif = $test->convert('CALL');
