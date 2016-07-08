@@ -54,9 +54,7 @@ if ($fichierADIF)
 	}
 	fclose($fichierADIF);
 }
-/*
-// Faire ajout du mode-ext :
-	$mode = nb('MODE',$ligne);
-fclose ($fichier_a_ouvrir);
-*/
+
+// Faire ajout du mode-ext 
+
 ?>

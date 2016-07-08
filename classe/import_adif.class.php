@@ -2,16 +2,32 @@
 
 /**
 * logjmh 
-* Classe d'importation au Format ADIF
+* Classe simple d'importation au Format ADIF basée sur les expressions régulières.
+* Simple class for ADIF import with regular expressions
+* 
+* Paramètres :
+* Bande en majuscule ou minuscule - Band upper or lower case
+* Date avec '-' ou '/' ou autre - Date with '-' or '/' or other
+* Heures avec ':' ou rien - Time with ':' or nothing
+* Frequence séparateur '.' ou autre - Frequency with a '.' or other
+* Mode en majuscule ou minuscule - Mode in upper or lower case
+* Locator en majuscule ou minuscule - Gridsquare in upper or lower case
+* Entités en majuscule ou minuscule - Country in upper or lower case
+* Etat ou région en majuscule ou minuscule - State in upper or lower case
+* Continent en majuscule ou minuscule - Continent in upper or lower case
+*
+* $ligne = ligne du fichier ADIF - One line of ADIF file
+* $result = Resultat de la conversion - Result of convert
+*
+* Les différentes methodes convertXxxx sont là pour développement futur
 */
 
 class ImportAdif
 {
 	private $ligne;
-//	private $file;  // a supprimer
 	private $result;
 
-	// Attribut de paramétrage - Setting attribut
+	// Attribut de paramétrage - Setting attribut with default value
 	private $paramBande = 'upper';
 	private $paramDate = '/';
 	private $paramTime = ':';
@@ -24,30 +40,12 @@ class ImportAdif
 
 
 	function __construct(){
-//		$this->file = ''; // a supprimer
 		$this->ligne ='';
 	}
-
-// a modifier afin de recevoir la ligne en argument:
-//	private function lireFichier(){   // passer ligne en arg ($ligne)
-//		$this->ligne = fgets($this->file);
-//	}
 
 	public function setData($ligne){
 		$this->ligne = $ligne;	
 	}
-
-// A supprimer reporter le fichier ADIF sur le php hors de la classe
-//	public function setFile($file){
-//		$this->file = fopen($file, 'r');
-//		$this->lireFichier();
-//	}
-
-	
-
-//	public function getResult(){
-//		return $this->result;
-//	}
 
 	public function convert($champ){
 		preg_match('~<'.$champ.':(\d)~', $this->ligne, $nb);
@@ -89,6 +87,10 @@ class ImportAdif
 		return $this->result;
 	}
 
+/**
+* Mise en forme de la date - Format date
+*
+*/
 	private function convertDate($qsodate){
 		$y = substr($qsodate, 0,4);
 		$m = substr($qsodate, 4,2);
@@ -187,9 +189,4 @@ class ImportAdif
 		echo "Tentative d'appel de la méthode ".$methode." avec en paramètres :<br>";
 		print_r($arguments);
 	}
-
-	public function __destruct(){
-		//fclose($this->file);
-	}
-
 }
