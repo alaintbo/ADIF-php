@@ -7,12 +7,14 @@
 
 class ImportAdif
 {
-	//private $contenu;
 	private $ligne;
 	private $file;
 	private $result;
+
+	// Attribut de paramétrage - Setting attribut
 	private $paramBande = 'upper';
 	private $paramDate = '/';
+	private $paramTime = ':';
 
 
 	function __construct(){
@@ -46,6 +48,10 @@ class ImportAdif
 			case 'BAND':
 				$this->convertBande($result[1]);
 				break;
+			case 'TIME_ON':
+			case 'TIME_OFF':
+				$this->convertTime($result[1]);
+				break;				
 			default:
 				$this->result = $result[1];
 				break;
@@ -65,12 +71,22 @@ class ImportAdif
 		return $this->result = $bande;
 	}
 
+	private function convertTime($time){
+		$h = substr($time, 0,2);
+		$m = substr($time, 2,2);
+		return $this->result = $h.$this->paramTime.$m;
+	}
+
 	public function settingBand($set){
 		$this->paramBande = $set;
 	}
 
 	public function settingDate($set){
 		$this->paramDate = $set;
+	}
+
+	public function settingTime($set){
+		$this->paramTime = $set;
 	}
 
 	public function __set($attribut, $valeur) {

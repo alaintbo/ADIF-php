@@ -10,7 +10,8 @@ $test->settingDate('-');
 //$test->settingDate('/');
 //$test->settingBand('upper');
 $test->settingBand('lower');
-
+$test->settingTime('');
+//$test->settingTime(':');
 
 
 
@@ -31,35 +32,7 @@ echo $bande."<br>";
 
 
 
-//	$fichier_a_ouvrir = fopen ("import.adi", "r");
-//	$ligne = fgets($fichier_a_ouvrir);
-//	echo $ligne;
-
-
 /*
-function nb($champ,$ligne){
-	preg_match('~<'.$champ.':(\d)~', $ligne, $nb);
-	preg_match('~<'.$champ.':'.$nb[1].'>(.{'.$nb[1].'})~', $ligne, $result);
-	return $result;
-}
-
-	$fichier_a_ouvrir = fopen ("import.adi", "r");
-	$ligne = fgets($fichier_a_ouvrir);
-
-	$date = nb('QSO_DATE',$ligne);
-	$y = substr($date[1], 0,4);
-	$m = substr($date[1], 4,2);
-	$j = substr($date[1], 6,2);
-	$importDate = $y."-".$m."-".$j;
-	
-	$call = nb('CALL',$ligne);
-
-	$timeOn = nb('TIME_ON',$ligne);
-
-	$timeOff = nb('TIME_OFF',$ligne);
-
-	$bande = nb('BAND',$ligne);
-
 // Faire point obligatoire
 	$freq = nb('FREQ',$ligne);
 
