@@ -18,10 +18,6 @@ $test->settingCountry('upper');		//upper or lower
 $test->settingState('upper');		//upper or lower
 $test->settingContinent('upper');	//upper or lower
 
-// Faire une boucle sur le fichier ADIF
-// Fichier ADIF à lire :
-//$test->setFile("import.adi");
-
 $fichierADIF = fopen($adif, 'r');
 if ($fichierADIF)
 {
