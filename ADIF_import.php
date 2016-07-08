@@ -13,7 +13,8 @@ $test->settingFreq('.');
 $test->settingMode('upper');
 $test->settingGrid('upper');
 $test->settingCountry('upper');
-$test->settingState('lower');
+$test->settingState('upper');
+$test->settingContinent('lower');
 
 
 
@@ -32,6 +33,8 @@ $itu = $test->convert('ITUZ');
 $dxcc = $test->convert('DXCC');
 $entite = $test->convert('COUNTRY');
 $state = $test->convert('STATE');
+$continent = $test->convert('CONT'); // -> problème
+
 
 
 echo $qsodate."<br>";
@@ -49,13 +52,13 @@ echo $itu."<br>";
 echo $dxcc."<br>";
 echo $entite."<br>";
 echo $state."<br>";
+echo $continent."<br>";
+
 
 
 /*
 // Faire ajout du mode-ext :
 	$mode = nb('MODE',$ligne);
-
-	$state = nb('STATE',$ligne);
 
 	$continent = nb('CONT',$ligne);
 

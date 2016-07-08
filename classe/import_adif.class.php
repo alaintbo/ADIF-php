@@ -20,6 +20,8 @@ class ImportAdif
 	private $paramGrid = 'upper';
 	private $paramCountry = 'upper';
 	private $paramState = 'upper';
+	private $paramContinent = 'upper';
+
 
 	function __construct(){
 		$this->file = '';
@@ -71,6 +73,9 @@ class ImportAdif
 			case 'STATE':
 				$this->convertState($result[1]);
 				break;
+			case 'CONT':
+				$this->convertContinent($result[1]);
+				break;
 			default:
 				$this->result = $result[1];
 				break;
@@ -121,6 +126,11 @@ class ImportAdif
 		return $this->result = $state;
 	}
 
+	public function convertContinent($cont){
+		$this->paramContinent == 'lower' ? $cont = strtolower($cont) : $cont = strtoupper($cont);
+		return $this->result = $cont;
+	}
+	
 	public function settingBand($set){
 		$this->paramBande = $set;
 	}
@@ -153,7 +163,9 @@ class ImportAdif
 		$this->paramState = $set;
 	}
 
-
+	public function settingContinent($set){
+		$this->paramContinent = $set;
+	}
 
 
 
