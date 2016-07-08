@@ -12,8 +12,8 @@ $test->settingTime('');
 $test->settingFreq('.');
 $test->settingMode('upper');
 $test->settingGrid('upper');
-$test->settingCountry('lower');
-
+$test->settingCountry('upper');
+$test->settingState('lower');
 
 
 
@@ -31,7 +31,7 @@ $waz = $test->convert('CQZ');
 $itu = $test->convert('ITUZ');
 $dxcc = $test->convert('DXCC');
 $entite = $test->convert('COUNTRY');
-
+$state = $test->convert('STATE');
 
 
 echo $qsodate."<br>";
@@ -48,14 +48,12 @@ echo $waz."<br>";
 echo $itu."<br>";
 echo $dxcc."<br>";
 echo $entite."<br>";
-
+echo $state."<br>";
 
 
 /*
 // Faire ajout du mode-ext :
 	$mode = nb('MODE',$ligne);
-
-	$entite = nb('COUNTRY',$ligne);
 
 	$state = nb('STATE',$ligne);
 

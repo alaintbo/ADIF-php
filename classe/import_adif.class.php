@@ -19,7 +19,7 @@ class ImportAdif
 	private $paramMode = 'upper';
 	private $paramGrid = 'upper';
 	private $paramCountry = 'upper';
-
+	private $paramState = 'upper';
 
 	function __construct(){
 		$this->file = '';
@@ -68,6 +68,9 @@ class ImportAdif
 			case 'COUNTRY':
 				$this->convertCountry($result[1]);
 				break;
+			case 'STATE':
+				$this->convertState($result[1]);
+				break;
 			default:
 				$this->result = $result[1];
 				break;
@@ -113,6 +116,11 @@ class ImportAdif
 		return $this->result = $country;
 	}
 
+	private function convertState($state){
+		$this->paramState == 'lower' ? $state = strtolower($state) : $state = strtoupper($state);
+		return $this->result = $state;
+	}
+
 	public function settingBand($set){
 		$this->paramBande = $set;
 	}
@@ -141,7 +149,9 @@ class ImportAdif
 		$this->paramCountry = $set;
 	}
 	
-
+	public function settingState($set){
+		$this->paramState = $set;
+	}
 
 
 
