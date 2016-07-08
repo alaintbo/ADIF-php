@@ -15,7 +15,7 @@ class ImportAdif
 	private $paramBande = 'upper';
 	private $paramDate = '/';
 	private $paramTime = ':';
-
+	private $paramFreq = '.';
 
 	function __construct(){
 		$this->file = '';
@@ -51,6 +51,9 @@ class ImportAdif
 			case 'TIME_ON':
 			case 'TIME_OFF':
 				$this->convertTime($result[1]);
+				break;
+			case 'FREQ':
+				$this->convertFreq($result[1]);
 				break;				
 			default:
 				$this->result = $result[1];
@@ -77,6 +80,15 @@ class ImportAdif
 		return $this->result = $h.$this->paramTime.$m;
 	}
 
+	private function convertFreq($freq){
+		$freq = str_replace('.', $this->paramFreq, $freq);
+		return $this->result = $freq;
+	}
+
+
+
+
+
 	public function settingBand($set){
 		$this->paramBande = $set;
 	}
@@ -87,6 +99,10 @@ class ImportAdif
 
 	public function settingTime($set){
 		$this->paramTime = $set;
+	}
+
+	public function settingFreq($set){
+		$this->paramFreq = $set;
 	}
 
 	public function __set($attribut, $valeur) {

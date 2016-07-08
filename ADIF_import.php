@@ -12,7 +12,7 @@ $test->settingDate('-');
 $test->settingBand('lower');
 $test->settingTime('');
 //$test->settingTime(':');
-
+$test->settingFreq('.');
 
 
 $qsodate = $test->convert('QSO_DATE');
@@ -20,8 +20,7 @@ $indicatif = $test->convert('CALL');
 $timeOn = $test->convert('TIME_ON');
 $timeOff = $test->convert('TIME_OFF');
 $bande = $test->convert('BAND');
-
-
+$freq = $test->convert('FREQ');
 
 
 echo $qsodate."<br>";
@@ -29,13 +28,10 @@ echo $indicatif."<br>";
 echo $timeOn."<br>";
 echo $timeOff."<br>";
 echo $bande."<br>";
-
+echo $freq."<br>";
 
 
 /*
-// Faire point obligatoire
-	$freq = nb('FREQ',$ligne);
-
 	$rste = nb('RST_SENT',$ligne);
 
 	$rstr = nb('RST_RCVD',$ligne);
