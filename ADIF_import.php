@@ -1,5 +1,6 @@
 <?php
 include("classe/import_adif.class.php");
+include("connect.php");
 
 // Nom du fichier ADIF:
 $adif = 'import.adi';
@@ -50,7 +51,6 @@ if ($fichierADIF)
 
 		// Ecriture dans la base :
 		echo $qsodate." ".$indicatif." ".$timeOn." ".$timeOff." ".$bande." ".$freq." ".$rste." ".$rstr." ".$mode." ".$locator." ".$waz." ".$itu." ".$dxcc." ".$entite." ".$state." ".$continent." ".$qsle." ".$qslr."<br>";
-
 	}
 	fclose($fichierADIF);
 }
