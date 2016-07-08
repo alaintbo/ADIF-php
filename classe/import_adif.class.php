@@ -8,7 +8,7 @@
 class ImportAdif
 {
 	private $ligne;
-	private $file;
+//	private $file;  // a supprimer
 	private $result;
 
 	// Attribut de paramétrage - Setting attribut
@@ -24,18 +24,24 @@ class ImportAdif
 
 
 	function __construct(){
-		$this->file = '';
+//		$this->file = ''; // a supprimer
 		$this->ligne ='';
 	}
 
-	private function lireFichier(){
-		$this->ligne = fgets($this->file);
+// a modifier afin de recevoir la ligne en argument:
+//	private function lireFichier(){   // passer ligne en arg ($ligne)
+//		$this->ligne = fgets($this->file);
+//	}
+
+	public function setData($ligne){
+		$this->ligne = $ligne;	
 	}
 
-	public function setFile($file){
-		$this->file = fopen($file, 'r');
-		$this->lireFichier();
-	}
+// A supprimer reporter le fichier ADIF sur le php hors de la classe
+//	public function setFile($file){
+//		$this->file = fopen($file, 'r');
+//		$this->lireFichier();
+//	}
 
 	
 
@@ -168,7 +174,7 @@ class ImportAdif
 	}
 
 
-
+// DEBUG
 	public function __set($attribut, $valeur) {
 		echo "Tentative d'attribution à ".$nom." de la valeur ".$valeur;
 	}
@@ -183,7 +189,7 @@ class ImportAdif
 	}
 
 	public function __destruct(){
-		fclose($this->file);
+		//fclose($this->file);
 	}
 
 }
