@@ -12,7 +12,7 @@ $test->settingTime('');
 $test->settingFreq('.');
 $test->settingMode('upper');
 $test->settingGrid('upper');
-
+$test->settingCountry('lower');
 
 
 
@@ -27,6 +27,10 @@ $rste = $test->convert('RST_SENT');
 $rstr = $test->convert('RST_RCVD');
 $mode = $test->convert('MODE');
 $locator = $test->convert('GRIDSQUARE');
+$waz = $test->convert('CQZ');
+$itu = $test->convert('ITUZ');
+$dxcc = $test->convert('DXCC');
+$entite = $test->convert('COUNTRY');
 
 
 
@@ -40,20 +44,16 @@ echo $rste."<br>";
 echo $rstr."<br>";
 echo $mode."<br>";
 echo $locator."<br>";
+echo $waz."<br>";
+echo $itu."<br>";
+echo $dxcc."<br>";
+echo $entite."<br>";
 
 
 
 /*
 // Faire ajout du mode-ext :
 	$mode = nb('MODE',$ligne);
-
-	$locator = nb('GRIDSQUARE',$ligne);
-
-	$waz = nb('CQZ',$ligne);
-
-	$itu = nb('ITUZ',$ligne);
-
-	$dxcc = nb('DXCC',$ligne);
 
 	$entite = nb('COUNTRY',$ligne);
 

@@ -18,6 +18,8 @@ class ImportAdif
 	private $paramFreq = '.';
 	private $paramMode = 'upper';
 	private $paramGrid = 'upper';
+	private $paramCountry = 'upper';
+
 
 	function __construct(){
 		$this->file = '';
@@ -62,7 +64,10 @@ class ImportAdif
 				break;	
 			case 'GRIDSQUARE':
 				$this->convertGrid($result[1]);
-				break;			
+				break;	
+			case 'COUNTRY':
+				$this->convertCountry($result[1]);
+				break;
 			default:
 				$this->result = $result[1];
 				break;
@@ -103,6 +108,11 @@ class ImportAdif
 		return $this->result = $grid;
 	}
 
+	private function convertCountry($country){
+		$this->paramCountry == 'lower' ? $country = strtolower($country) : $country = strtoupper($country);
+		return $this->result = $country;
+	}
+
 	public function settingBand($set){
 		$this->paramBande = $set;
 	}
@@ -126,6 +136,16 @@ class ImportAdif
 	public function settingGrid($set){
 		$this->paramGrid = $set;
 	}
+	
+	public function settingCountry($set){
+		$this->paramCountry = $set;
+	}
+	
+
+
+
+
+
 
 	public function __set($attribut, $valeur) {
 		echo "Tentative d'attribution à ".$nom." de la valeur ".$valeur;
