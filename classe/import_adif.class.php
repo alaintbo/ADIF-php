@@ -26,6 +26,7 @@ class ImportAdif
 {
 	private $ligne;
 	private $result;
+	private $bande;
 
 	// Attribut de paramétrage - Setting attribut with default value
 	private $paramBande = 'upper';
@@ -100,6 +101,7 @@ class ImportAdif
 
 	private function convertBande($bande){
 		$this->paramBande == 'lower' ? $bande = strtolower($bande) : $bande = strtoupper($bande);
+		$this->bande = $bande;
 		return $this->result = $bande;
 	}
 
@@ -110,8 +112,10 @@ class ImportAdif
 	}
 
 	private function convertFreq($freq){
-		$freq = str_replace('.', $this->paramFreq, $freq);
+		if ($this->verifFreq($this->bande,$freq)){
+			$freq = str_replace('.', $this->paramFreq, $freq);
 		return $this->result = $freq;
+		}
 	}
 
 	private function convertMode($mode){
@@ -119,6 +123,18 @@ class ImportAdif
 		return $this->result = $mode;
 	}
 
+// Validation de la fréquence - Valid frequency
+	private function verifFreq($bande,$freq){
+		$low = array('2190m' => 0.136, '630m' => 0.472, '560m' => 0.501, '160m' => 1.8, '80m' => 3.5, '60m' => 5.102, '40m' => 7, '30m' => 10, '20m' => 14.0, '17m' => 18.068, '15m' => 21, '12m' => 24.89, '10m' => 28, '6m' => 50, '4m' => 70, '2m' => 144, '1.25m' => 222, '70cm' => 420, '33cm' => 902, '23cm' => 1240, '13cm' => 2300, '9cm' => 3300, '6cm' => 5650, '3cm' => 10000, '1.25cm' => 24000, '6mm' => 47000, '4mm' => 75500, '2.5mm' => 119980, '2mm' => 142000, '1mm' => 241000);
+		$hight = array('2190m' => 0.137, '630m' => 0.479, '560m' => 0.504, '160m' => 2, '80m' => 3.8, '60m' => 5.4065, '40m' => 7.3, '30m' => 10.15, '20m' => 14.35, '17m' => 18.168, '15m' => 21.45, '12m' => 24.99, '10m' => 29.7, '6m' => 54, '4m' => 71, '2m' => 148, '1.25m' => 225, '70cm' => 450, '33cm' => 928, '23cm' => 1300, '13cm' => 2450, '9cm' => 3500, '6cm' => 5925, '3cm' => 10500, '1.25cm' => 24250, '6mm' => 47200, '4mm' => 81000, '2.5mm' => 120020, '2mm' => 149000, '1mm' => 250000);
+
+		if($freq > $low[$bande] AND $freq < $hight[$bande]){
+			return True;
+		}else{
+			return False;
+		}
+	}
+	
 	private function convertGrid($grid){
 		$this->paramGrid == 'lower' ? $grid = strtolower($grid) : $grid = strtoupper($grid);
 		return $this->result = $grid;
